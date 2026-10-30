@@ -1,22 +1,24 @@
+"""Extract step: load the raw APRA quarterly general insurance database."""
+
 from pathlib import Path
+
 import pandas as pd
 
-# Path to the raw APRA data file
-RAW_FILE = Path("data/raw") / "Quarterly general insurance performance statistics database September 2023 to June 2026.xlsx"
+# Project root = two levels above this file (DA1/src/extract.py -> DA1)
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+RAW_FILE = (
+    PROJECT_ROOT / "data" / "raw"
+    / "Quarterly general insurance performance statistics database September 2023 to June 2026.xlsx"
+)
 
-# 1. Read ONLY the "Database" sheet
-df = pd.read_excel(RAW_FILE, sheet_name="Database")
 
-# 2. Print the number of rows and columns
-num_rows, num_columns = df.shape
-print(f"Number of rows: {num_rows}, Number of columns: {num_columns}")
+def load_raw_data(path: Path = RAW_FILE) -> pd.DataFrame:
+    """Read the 'Database' sheet of the APRA workbook and return it as a DataFrame."""
+    if not path.exists():
+        raise FileNotFoundError(f"Raw data file not found: {path}")
+    return pd.read_excel(path, sheet_name="Database")
 
-# 3. Print the first 5 rows
-first_5_rows = df.head(5)
-print("\nFirst 5 rows:")
-print(first_5_rows)
 
-# 4. Print the column names
-col_names = df.columns
-print("\nColumn names:")
-print(col_names)
+if __name__ == "__main__":
+    df = load_raw_data()
+    print(f"Loaded {len(df):,} rows and {df.shape[1]} columns from {RAW_FILE.name}")
