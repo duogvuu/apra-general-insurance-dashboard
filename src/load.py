@@ -8,6 +8,7 @@ from extract import PROJECT_ROOT
 
 DB_FILE = PROJECT_ROOT / "data" / "processed" / "apra_gi.db"
 SCHEMA_FILE = PROJECT_ROOT / "sql" / "schema.sql"
+VIEWS_FILE = PROJECT_ROOT / "sql" / "views.sql"
 
 STATE_CODES = {
     "National": "AUS",
@@ -104,6 +105,7 @@ def load_to_sqlite(tidy: pd.DataFrame, db_path=DB_FILE) -> None:
         for name, table in tables.items():
             table.to_sql(name, conn, if_exists="append", index=False)
             print(f"  {name}: {len(table):,} rows")
+        conn.executescript(VIEWS_FILE.read_text())
         conn.commit()
     finally:
         conn.close()
