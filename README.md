@@ -11,9 +11,9 @@ underwriting results.
 ## Key insights
 
 - **The direct insurance industry was profitable throughout the period.**
-  Over the 11 quarters, direct insurers earned **$187.9bn** in insurance revenue at a
+  Over the 11 quarters, direct insurers earned **\$187.9bn** in insurance revenue at a
   **combined ratio of 81.4%** (loss ratio 64.8%), an insurance service result of
-  **$34.6bn** before reinsurance.
+  **\$34.6bn** before reinsurance.
 - **Catastrophe seasonality is the main source of volatility.** The three worst
   quarters for the industry were Dec 2023, Mar 2025 and Dec 2025 (combined ratio
   up to 97.6%), all in the Oct–Mar storm season. **Dec 2025** alone had four classes
@@ -107,7 +107,7 @@ costs, other expenses, onerous contract losses and changes to prior-period claim
 2. No duplicate quarter × class × state × metric combinations.
 3. Exactly 11 quarters of flow data.
 4. **Reconciliation:** insurance revenue + insurance service expense equals APRA's own
-   published insurance service result (187 class-quarters, within $1m rounding).
+   published insurance service result (187 class-quarters, within \$1m rounding).
 
 Ratios in Power BI were also cross-checked against the SQL views and an independent
 pandas calculation in the exploration notebook.
